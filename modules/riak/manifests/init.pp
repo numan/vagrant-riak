@@ -21,13 +21,13 @@ class riak {
 	}
 	#download the Riak binary package
 	exec { 'wget-riak':
-		command => '/usr/bin/wget http://downloads.basho.com.s3-website-us-east-1.amazonaws.com/riak/CURRENT/ubuntu/lucid/riak_1.2.0-1_i386.deb -O /tmp/downloads/riak_1.2.0-1_i386.deb',
-		creates => "/tmp/downloads/riak_1.2.0-1_i386.deb",
+		command => '/usr/bin/wget http://s3.amazonaws.com/downloads.basho.com/riak/1.2/1.2.1/ubuntu/precise/riak_1.2.1-1_amd64.deb -O /tmp/downloads/riak_1.2.1-1_amd64.deb',
+		creates => "/tmp/downloads/riak_1.2.1-1_amd64.deb",
 		subscribe =>File['/tmp/downloads']
 	}
 
 	exec { 'riak-install':
-		command => '/usr/bin/dpkg -i /tmp/downloads/riak_1.2.0-1_i386.deb',
+		command => '/usr/bin/dpkg -i /tmp/downloads/riak_1.2.1-1_amd64.deb',
 		user => root,
 		subscribe => Exec['wget-riak']
 	}
